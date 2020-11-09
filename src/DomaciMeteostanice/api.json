@@ -1,0 +1,7 @@
+{
+    "last_update_time": %last_update_time%,
+    "tempature": %tempature%,
+    "humidity": %humidity&,
+    "pressure": %pressure%,
+    "dew": %dew%
+}
