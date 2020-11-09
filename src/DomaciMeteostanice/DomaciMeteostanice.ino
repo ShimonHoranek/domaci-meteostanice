@@ -99,12 +99,12 @@ void setup()
 
   // Route for root / web page
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send_P(SPIFFS, "/index.html", "text/html", false, processor);
+    request->send(SPIFFS, "/index.html", "text/html", false, processor);
   });
 
   // Route for API
   server.on("/api", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send_P(SPIFFS, "/api.json", "application/json", false, processor);
+    request->send(SPIFFS, "/api.json", "application/json", false, processor);
   });
 
   // Start server
