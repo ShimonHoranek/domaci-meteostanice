@@ -71,17 +71,19 @@
     </p>
 </body>
 <script>
+	function getValue(obj, value) {
+	  return obj.find(function(v){ return v["name"] === value}).value;
+	}
 	function requestFunction() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.overrideMimeType("application/json");
 		xhttp.onreadystatechange = function () {
 		    if (this.readyState == 4 && this.status == 200) {
-			let new_data = JSON.parse(this.responseText);
-			document.getElementById("temperature").innerHTML = new_data.temperature;
-			document.getElementById("humidity").innerHTML = new_data.humidity;
-			document.getElementById("pressure").innerHTML = new_data.pressure;
-			document.getElementById("dew").innerHTML = new_data.dew;
-
+				let new_data = JSON.parse(this.responseText);
+				let elems = ["temperature", "humidity", "pressure", "dew"];
+				elems.forEach(function(elem) {
+					document.getElementById(elem).innerHTML = getValue(new_data, elem)
+				});
 		    }
 		};
 		xhttp.open("GET", "/api", true);

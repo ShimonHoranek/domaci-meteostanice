@@ -1,7 +1,30 @@
-{
-    "last_update_time": %last_update_time%,
-    "temperature": %temperature%,
-    "humidity": %humidity%,
-    "pressure": %pressure%,
-    "dew": %dew%
-}
+[
+	{
+		"id": "temperature",
+		"value": %temperature%,
+		"unit": "°C",
+		"color": "#00E676",
+		"name_cs": "Teplota"
+	},
+	{
+		"id": "humidity",
+		"value": %humidity%,
+		"unit": "%",
+		"color": "#00B0FF",
+		"name_cs": "Vlhkost"
+	},
+	{
+		"id": "pressure",
+		"value": %pressure%,
+		"unit": "hPa",
+		"color": "#D50000",
+		"name_cs": "Tlak"
+	},
+	{
+		"id": "dew",
+		"value": %dew%,
+		"unit": "°C",
+		"color": "#76FF03",
+		"name_cs": "Rosný bod"
+	}
+]
