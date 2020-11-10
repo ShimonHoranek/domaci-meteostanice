@@ -65,7 +65,7 @@ String processor(const String &var)
     return String(dew);
   if (var == "last_update_time")
     return String(previousMillis);
-  return "\"Proccessor error, `" + var + "` is not an existing variable template\"";
+  return "\"error\"";
 }
 
 // Set your Static IP address
@@ -99,12 +99,12 @@ void setup()
 
   // Route for root / web page
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send_P(SPIFFS, "/index.html", "text/html", false, processor);
+    request->send(SPIFFS, "/index.html", "text/html");
   });
 
   // Route for API
   server.on("/api", HTTP_GET, [](AsyncWebServerRequest *request) {
-    request->send_P(SPIFFS, "/api.json", "application/json", false, processor);
+    request->send(SPIFFS, "/api.json", "application/json", false, processor);
   });
 
   // Start server
