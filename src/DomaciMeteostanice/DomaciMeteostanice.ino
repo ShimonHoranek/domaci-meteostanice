@@ -63,8 +63,6 @@ String processor(const String &var)
     return String(pressure);
   if (var == "dew")
     return String(dew);
-  if (var == "last_update_time")
-    return String(previousMillis);
   return "\"error\"";
 }
 
