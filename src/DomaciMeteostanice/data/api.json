@@ -9,7 +9,7 @@
 	{
 		"id": "humidity",
 		"value": %humidity%,
-		"unit": "%",
+		"unit": "\u0025",
 		"color": "#00B0FF",
 		"name_cs": "Vlhkost"
 	},

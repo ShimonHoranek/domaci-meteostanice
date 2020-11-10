@@ -71,9 +71,15 @@
     </p>
 </body>
 <script>
-	function getValue(obj, value) {
-	  return obj.find(function(v){ return v["name"] === value}).value;
+	function getValue(array, value) {
+    		for (var i = 0; i < array.length; i++) {
+        		if (array[i]["id"] === value) {
+        	    		return array[i];
+        		}
+   		}
+    		return null;
 	}
+	
 	function requestFunction() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.overrideMimeType("application/json");
@@ -82,7 +88,7 @@
 				let new_data = JSON.parse(this.responseText);
 				let elems = ["temperature", "humidity", "pressure", "dew"];
 				elems.forEach(function(elem) {
-					document.getElementById(elem).innerHTML = getValue(new_data, elem)
+					document.getElementById(elem).innerHTML = getValue(new_data, elem).value;
 				});
 		    }
 		};

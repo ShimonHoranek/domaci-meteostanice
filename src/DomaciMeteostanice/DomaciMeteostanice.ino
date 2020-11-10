@@ -70,7 +70,7 @@ String processor(const String &var)
 IPAddress localIP(10, 10, 10, 12);
 IPAddress gatewayIP(10, 10, 10, 1);
 IPAddress subnetMask(255, 255, 255, 0);
-IPAddress dns(10, 10, 10, 1);
+IPAddress dns(10, 10, 10, 10);
 
 void setup()
 {
@@ -80,6 +80,8 @@ void setup()
 #endif
   dht.begin();
   bmp.begin(0x76);
+  
+  readAllValues();
 
   // Connect to Wi-Fi
   WiFi.config(localIP, gatewayIP, subnetMask, dns);
@@ -111,15 +113,17 @@ void setup()
 
 void loop()
 {
-  unsigned long currentMillis = millis();
-  if (currentMillis - previousMillis >= interval)
+  if (millis() - previousMillis >= interval)
   {
     // save the last time you updated the DHT values
-    previousMillis = currentMillis;
+    previousMillis = millis();
+    readAllValues();
+  }
+}
 
+void readAllValues() {
     new_reading(temperature, ((bmp.readTemperature() + dht.readTemperature()) / 2 - 0.3));
     new_reading(humidity, (dht.readHumidity() - 4.5));
     new_reading(pressure, (bmp.readPressure() / 100.0F));
     dew = temperature - ((100 - humidity) / 5) - 2;
-  }
 }
