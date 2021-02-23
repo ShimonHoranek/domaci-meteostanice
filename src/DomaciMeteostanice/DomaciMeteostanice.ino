@@ -85,6 +85,7 @@ void setup()
 
   // Connect to Wi-Fi
   WiFi.config(localIP, gatewayIP, subnetMask, dns);
+  WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("Connecting to WiFi");
   while (WiFi.status() != WL_CONNECTED)
@@ -122,8 +123,8 @@ void loop()
 }
 
 void readAllValues() {
-    new_reading(temperature, ((bmp.readTemperature() + dht.readTemperature()) / 2 - 0.3));
-    new_reading(humidity, (dht.readHumidity() - 4.5));
-    new_reading(pressure, (bmp.readPressure() / 100.0F));
-    dew = temperature - ((100 - humidity) / 5) - 2;
+    new_reading(temperature, bmp.readTemperature());
+    new_reading(humidity, (dht.readHumidity() -14));
+    new_reading(pressure, (bmp.readPressure() / 100.0F)+1);
+    dew = (temperature - ((100 - humidity) / 5) - 2);
 }
